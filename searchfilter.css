@@ -1,0 +1,84 @@
+.search-filter-container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .filter-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .dropdown, .text-input {
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    flex: 1;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .dropdown:hover, .text-input:hover {
+    border-color: #007bff;
+  }
+  
+  .multi-select {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .remove-btn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .remove-btn:hover {
+    background: #c82333;
+  }
+  
+  .add-btn, .search-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 120px;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .add-btn:hover, .search-btn:hover {
+    background: #0056b3;
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  
