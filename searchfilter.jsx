@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import './SearchFilter.css';
 
 const filterOptions = [
@@ -7,76 +7,87 @@ const filterOptions = [
   { label: 'Date', type: 'text' }
 ];
 
-const SearchFilter = () => {
-  const [filters, setFilters] = useState([
-    { key: 'Status', value: ['Pending'] },
-    { key: 'Name', value: [] }
-  ]);
+class SearchFilter extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      filters: [
+        { key: 'Status', value: ['Pending'] },
+        { key: 'Name', value: [] }
+      ]
+    };
+  }
 
-  const addFilter = () => {
-    setFilters([...filters, { key: '', value: [] }]);
+  addFilter = () => {
+    this.setState((prevState) => ({
+      filters: [...prevState.filters, { key: '', value: [] }]
+    }));
   };
 
-  const updateFilter = (index, key, value) => {
-    setFilters((prevFilters) => {
-      const newFilters = [...prevFilters];
+  updateFilter = (index, key, value) => {
+    this.setState((prevState) => {
+      const newFilters = [...prevState.filters];
       newFilters[index] = { key, value };
-      return newFilters;
+      return { filters: newFilters };
     });
   };
 
-  const removeFilter = (index) => {
-    setFilters((prevFilters) => prevFilters.filter((_, i) => i !== index));
+  removeFilter = (index) => {
+    this.setState((prevState) => ({
+      filters: prevState.filters.filter((_, i) => i !== index)
+    }));
   };
 
-  const search = () => {
-    console.log('Searching with filters:', filters);
+  search = () => {
+    console.log('Searching with filters:', this.state.filters);
   };
 
-  return (
-    <div className="search-filter-container">
-      <h2>Search Filter</h2>
-      {filters.map((filter, index) => (
-        <div key={index} className="filter-row">
-          <select
-            className="dropdown"
-            value={filter.key}
-            onChange={(e) => updateFilter(index, e.target.value, [])}
-          >
-            <option value="">Select Filter</option>
-            {filterOptions.map((option) => (
-              <option key={option.label} value={option.label}>{option.label}</option>
-            ))}
-          </select>
-          {filter.key && filterOptions.find((opt) => opt.label === filter.key)?.type === 'dropdown' ? (
+  render() {
+    return (
+      <div className="search-filter-container">
+        <h2>Search Filter</h2>
+        {this.state.filters.map((filter, index) => (
+          <div key={index} className="filter-row">
             <select
               className="dropdown"
-              value={filter.value[0] || ''}
-              onChange={(e) => updateFilter(index, filter.key, [e.target.value])}
+              value={filter.key}
+              onChange={(e) => this.updateFilter(index, e.target.value, [])}
             >
-              <option value="">Select Value</option>
-              {filterOptions.find((opt) => opt.label === filter.key)?.values.map((val) => (
-                <option key={val} value={val}>{val}</option>
+              <option value="">Select Filter</option>
+              {filterOptions.map((option) => (
+                <option key={option.label} value={option.label}>{option.label}</option>
               ))}
             </select>
-          ) : (
-            <input
-              className="text-input"
-              type="text"
-              placeholder="Enter Value"
-              value={filter.value.join(', ')}
-              onChange={(e) => updateFilter(index, filter.key, e.target.value.split(',').map(val => val.trim()))}
-            />
-          )}
-          <button className="remove-btn" onClick={() => removeFilter(index)}>Remove</button>
+            {filter.key && filterOptions.find((opt) => opt.label === filter.key)?.type === 'dropdown' ? (
+              <select
+                className="dropdown"
+                value={filter.value[0] || ''}
+                onChange={(e) => this.updateFilter(index, filter.key, [e.target.value])}
+              >
+                <option value="">Select Value</option>
+                {filterOptions.find((opt) => opt.label === filter.key)?.values.map((val) => (
+                  <option key={val} value={val}>{val}</option>
+                ))}
+              </select>
+            ) : (
+              <input
+                className="text-input"
+                type="text"
+                placeholder="Enter Value"
+                value={filter.value.join(', ')}
+                onChange={(e) => this.updateFilter(index, filter.key, e.target.value.split(',').map(val => val.trim()))}
+              />
+            )}
+            <button className="remove-btn" onClick={() => this.removeFilter(index)}>Remove</button>
+          </div>
+        ))}
+        <div className="button-group">
+          <button className="add-btn" onClick={this.addFilter}>Add Filter</button>
+          <button className="search-btn" onClick={this.search}>Search</button>
         </div>
-      ))}
-      <div className="button-group">
-        <button className="add-btn" onClick={addFilter}>Add Filter</button>
-        <button className="search-btn" onClick={search}>Search</button>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default SearchFilter;
