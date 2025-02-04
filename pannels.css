@@ -1,0 +1,50 @@
+/* Container for the tiles */
+.ticket-tiles-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px;
+    flex-wrap: wrap; /* Allows wrapping if the screen is small */
+  }
+  
+  /* Style for each tile */
+  .ticket-tile {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 150px; /* Ensure tiles are not too small on smaller screens */
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Tile animation and hover effects */
+  .ticket-tile:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Header with Paypal Blue color */
+  .tile-header {
+    background-color: #003087; /* Paypal Blue */
+    color: white;
+    padding: 12px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  /* Body section displaying ticket count */
+  .tile-body {
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+    color: #555;
+    font-weight: 600;
+  }
+  
+  /* Ensure the tiles stretch equally */
+  .ticket-tile span {
+    display: block;
+  }
+  
