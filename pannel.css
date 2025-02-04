@@ -1,0 +1,55 @@
+<div className="ticket-tiles-container">
+      <div className="ticket-tile">
+        <div className="tile-header">
+          <span>Approved</span>
+        </div>
+        <div className="tile-body">
+          <span>34 Tickets</span>
+        </div>
+      </div>
+      
+      <div className="ticket-tile">
+        <div className="tile-header">
+          <span>Closed Incomplete</span>
+        </div>
+        <div className="tile-body">
+          <span>12 Tickets</span>
+        </div>
+      </div>
+      
+      <div className="ticket-tile">
+        <div className="tile-header">
+          <span>In Review</span>
+        </div>
+        <div className="tile-body">
+          <span>20 Tickets</span>
+        </div>
+      </div>
+      
+      <div className="ticket-tile">
+        <div className="tile-header">
+          <span>On Hold</span>
+        </div>
+        <div className="tile-body">
+          <span>5 Tickets</span>
+        </div>
+      </div>
+      
+      <div className="ticket-tile">
+        <div className="tile-header">
+          <span>Regulatory Approval</span>
+        </div>
+        <div className="tile-body">
+          <span>8 Tickets</span>
+        </div>
+      </div>
+
+      <div className="ticket-tile">
+        <div className="tile-header">
+          <span>Solution Design Review</span>
+        </div>
+        <div className="tile-body">
+          <span>7 Tickets</span>
+        </div>
+      </div>
+    </div>
