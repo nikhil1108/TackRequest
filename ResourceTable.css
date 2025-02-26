@@ -1,0 +1,169 @@
+/* General Table Styling */
+.allocation-table {
+  padding: 2rem;
+  background-color: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 0.75rem;
+  border: 1px solid #e5e7eb;
+  animation: fadeIn 1s ease-out;
+  max-width: 1200px;
+  margin: 2rem auto;
+}
+
+/* Heading Styles */
+.allocation-table h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #003087; /* PayPal Blue */
+  margin-bottom: 1.5rem;
+  text-align: center;
+  animation: fadeIn 1s ease-out;
+}
+
+/* Table Styling */
+.allocation-table table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  animation: slideIn 1s ease-out;
+  margin-top: 1.5rem;
+}
+
+/* Table Head Styling */
+.allocation-table thead {
+  background-color: #003087; /* PayPal Dark Blue */
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.allocation-table th {
+  padding: 1.25rem;
+  text-align: left;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Table Body Styling */
+.allocation-table tbody {
+  background-color: #f9fafb; /* Light Gray */
+  color: #1f2937; /* Dark Text */
+}
+
+.allocation-table tr {
+  transition: background-color 0.3s ease-in-out;
+}
+
+.allocation-table tr:hover {
+  background-color: #f3f4f6; /* Hover Effect */
+}
+
+/* Table Cells Styling */
+.allocation-table td {
+  padding: 1.25rem;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* Input Field Styling - uniform size for all fields */
+.allocation-table input,
+.allocation-table select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db; /* Light Border */
+  border-radius: 0.375rem;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  font-size: 1rem;
+  box-sizing: border-box; /* Ensure padding is included in the width calculation */
+}
+
+/* Input Focus & Hover Styling */
+.allocation-table input:focus,
+.allocation-table select:focus {
+  outline: none;
+  ring: 2px solid #fcd34d; /* PayPal Yellow */
+  box-shadow: 0 0 0 2px rgba(252, 211, 77, 0.5);
+}
+
+.allocation-table input:hover,
+.allocation-table select:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Submit Button Styling */
+.submit-button {
+  display: inline-block;
+  background-color: #003087;
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.75rem 2rem;
+  border-radius: 0.375rem;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 2rem;
+}
+
+.submit-button:hover {
+  background-color: #2a46d7;
+  transform: translateY(-2px);
+}
+
+.submit-button:active {
+  background-color: #002569;
+  transform: translateY(1px);
+}
+
+/* Container for Submit Button */
+.submit-container {
+  text-align: center;
+}
+
+/* Animation for Fade-In */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Animation for Slide-In */
+@keyframes slideIn {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive Design for smaller screens */
+@media (max-width: 768px) {
+  .allocation-table {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  .allocation-table table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .allocation-table th, .allocation-table td {
+    padding: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .allocation-table h2 {
+    font-size: 1.25rem;
+  }
+}
