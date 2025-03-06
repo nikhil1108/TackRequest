@@ -19,11 +19,12 @@
   font-weight: bold;
   cursor: pointer;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  transition: all 0.3s ease-in-out;
 }
 
 .chatbot-button:hover {
   background: linear-gradient(135deg, #005ea6, #002b52);
+  transform: scale(1.05);
 }
 
 /* Chatbot Window */
@@ -32,11 +33,12 @@
   bottom: 70px;
   right: 0;
   width: 340px;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
   border-radius: 16px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   overflow: hidden;
+  animation: fade-in 0.3s ease-in-out;
 }
 
 /* Chat Header */
@@ -50,6 +52,10 @@
   align-items: center;
 }
 
+.close-icon {
+  cursor: pointer;
+}
+
 /* Chat Body */
 .chat-body {
   padding: 20px;
@@ -57,13 +63,14 @@
   overflow-y: auto;
 }
 
+/* Chat Questions */
 .chat-question {
   background: #f8f9fa;
   padding: 12px;
   margin-bottom: 10px;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
 }
 
 .chat-question:hover {
@@ -96,6 +103,7 @@
   font-size: 14px;
   font-weight: bold;
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .back-button:hover {
@@ -154,5 +162,17 @@
 @keyframes typing-blink {
   50% {
     border-color: transparent;
+  }
+}
+
+/* Fade-in Effect */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
