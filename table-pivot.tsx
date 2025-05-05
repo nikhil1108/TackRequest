@@ -6,8 +6,8 @@ import {
   getPaginationRowModel,
   flexRender,
   SortingState,
+  ColumnDef,
 } from '@tanstack/react-table';
-import { PivotItem } from '@fluentui/react';
 
 interface QuotaItem {
   service: string;
@@ -28,7 +28,7 @@ const QuotaTable: React.FC<QuotaTableProps> = ({ data }) => {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [globalFilter, setGlobalFilter] = useState('');
 
-  const columns = useMemo(
+  const quotaColumns: ColumnDef<QuotaItem>[] = useMemo(
     () => [
       {
         accessorKey: 'service',
@@ -61,7 +61,7 @@ const QuotaTable: React.FC<QuotaTableProps> = ({ data }) => {
       {
         accessorKey: 'adjustable',
         header: 'Adjustable',
-        cell: (info: any) => (
+        cell: (info) => (
           <span className={info.getValue() ? 'yes' : 'no'}>
             {info.getValue() ? 'Yes' : 'No'}
           </span>
@@ -90,9 +90,9 @@ const QuotaTable: React.FC<QuotaTableProps> = ({ data }) => {
     );
   }, [data, globalFilter]);
 
-  const table = useReactTable({
+  const table = useReactTable<QuotaItem>({
     data: filteredData,
-    columns,
+    columns: quotaColumns,
     state: {
       sorting,
     },
@@ -103,120 +103,120 @@ const QuotaTable: React.FC<QuotaTableProps> = ({ data }) => {
   });
 
   return (
-    <PivotItem headerText="Quota Increase">
+    <div>
       <style>
         {`
-          .quota-title {
-            font-size: 20px;
-            margin-bottom: 16px;
-            color: #202124;
-            font-weight: 600;
-          }
+        .quota-title {
+          font-size: 20px;
+          margin-bottom: 16px;
+          color: #202124;
+          font-weight: 600;
+        }
 
-          .search-input {
-            margin-bottom: 12px;
-            padding: 8px;
-            width: 100%;
-            max-width: 300px;
-            border: 1px solid #dadce0;
-            border-radius: 4px;
-          }
+        .search-input {
+          margin-bottom: 12px;
+          padding: 8px;
+          width: 100%;
+          max-width: 300px;
+          border: 1px solid #dadce0;
+          border-radius: 4px;
+        }
 
-          .quota-table-container {
-            overflow-x: auto;
-            background: #fff;
-            padding: 12px;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgba(60, 64, 67, 0.15);
-          }
+        .quota-table-container {
+          overflow-x: auto;
+          background: #fff;
+          padding: 12px;
+          border-radius: 8px;
+          box-shadow: 0 2px 6px rgba(60, 64, 67, 0.15);
+        }
 
-          .quota-table {
-            width: 100%;
-            border-collapse: collapse;
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            font-size: 14px;
-            color: #3c4043;
-          }
+        .quota-table {
+          width: 100%;
+          border-collapse: collapse;
+          font-family: 'Segoe UI', Roboto, sans-serif;
+          font-size: 14px;
+          color: #3c4043;
+        }
 
-          .quota-table th {
-            background: #f8f9fa;
-            font-weight: 600;
-            text-align: left;
-            padding: 12px 10px;
-            border-bottom: 1px solid #dadce0;
-            cursor: pointer;
-          }
+        .quota-table th {
+          background: #f8f9fa;
+          font-weight: 600;
+          text-align: left;
+          padding: 12px 10px;
+          border-bottom: 1px solid #dadce0;
+          cursor: pointer;
+        }
 
-          .quota-table td {
-            padding: 10px;
-            border-bottom: 1px solid #e0e0e0;
-            vertical-align: middle;
-          }
+        .quota-table td {
+          padding: 10px;
+          border-bottom: 1px solid #e0e0e0;
+          vertical-align: middle;
+        }
 
-          .quota-table tr:hover {
-            background-color: #f1f3f4;
-          }
+        .quota-table tr:hover {
+          background-color: #f1f3f4;
+        }
 
-          .quota-button {
-            padding: 6px 10px;
-            font-size: 13px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-weight: 500;
-            transition: background 0.2s;
-          }
+        .quota-button {
+          padding: 6px 10px;
+          font-size: 13px;
+          border: none;
+          border-radius: 6px;
+          cursor: pointer;
+          font-weight: 500;
+          transition: background 0.2s;
+        }
 
-          .quota-button.trend {
-            background-color: #e8f0fe;
-            color: #1967d2;
-          }
+        .quota-button.trend {
+          background-color: #e8f0fe;
+          color: #1967d2;
+        }
 
-          .quota-button.trend:hover {
-            background-color: #d2e3fc;
-          }
+        .quota-button.trend:hover {
+          background-color: #d2e3fc;
+        }
 
-          .quota-button.edit {
-            background-color: #fce8e6;
-            color: #d93025;
-          }
+        .quota-button.edit {
+          background-color: #fce8e6;
+          color: #d93025;
+        }
 
-          .quota-button.edit:hover {
-            background-color: #fbcfc6;
-          }
+        .quota-button.edit:hover {
+          background-color: #fbcfc6;
+        }
 
-          .yes {
-            color: #188038;
-            font-weight: bold;
-          }
+        .yes {
+          color: #188038;
+          font-weight: bold;
+        }
 
-          .no {
-            color: #5f6368;
-            font-weight: bold;
-          }
+        .no {
+          color: #5f6368;
+          font-weight: bold;
+        }
 
-          .pagination {
-            margin-top: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-          }
+        .pagination {
+          margin-top: 12px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
 
-          .pagination button {
-            padding: 6px 12px;
-            margin: 0 4px;
-            border: none;
-            border-radius: 4px;
-            background-color: #e8f0fe;
-            color: #1967d2;
-            cursor: pointer;
-          }
+        .pagination button {
+          padding: 6px 12px;
+          margin: 0 4px;
+          border: none;
+          border-radius: 4px;
+          background-color: #e8f0fe;
+          color: #1967d2;
+          cursor: pointer;
+        }
 
-          .pagination button:disabled {
-            background-color: #f1f3f4;
-            color: #5f6368;
-            cursor: not-allowed;
-          }
+        .pagination button:disabled {
+          background-color: #f1f3f4;
+          color: #5f6368;
+          cursor: not-allowed;
+        }
         `}
       </style>
 
@@ -284,7 +284,7 @@ const QuotaTable: React.FC<QuotaTableProps> = ({ data }) => {
           </div>
         </div>
       </div>
-    </PivotItem>
+    </div>
   );
 };
 
